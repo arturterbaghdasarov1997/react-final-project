@@ -1,19 +1,7 @@
 import { Modal, Box, Typography } from "@mui/material";
+import { IPhotoModal } from "../interfaces/photomodal.interface";
 
-interface PhotoModalProps {
-  open: boolean;
-  onClose: () => void;
-  photo: {
-    id: string;
-    urls: { regular: string };
-    alt_description: string;
-    user: { name: string };
-    description: string | null;
-    likes: number;
-  };
-}
-
-export const ModalView: React.FC<PhotoModalProps> = ({ open, onClose, photo }) => (
+export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => (
   <Modal open={open} onClose={onClose}>
     <Box
       sx={{
