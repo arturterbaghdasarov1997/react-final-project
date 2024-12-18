@@ -1,15 +1,7 @@
-import { Card, CardMedia, CardActionArea } from '@mui/material';
+import { Card, CardMedia, CardActionArea } from "@mui/material";
+import { IPhotoCard } from "../interfaces/photocard.interface";
 
-interface PhotoCardProps {
-  photo: {
-    id: string;
-    urls: { small: string };
-    alt_description: string;
-  };
-  onClick: () => void;
-}
-
-export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onClick }) => (
+export const PhotoCard: React.FC<IPhotoCard> = ({ photo, onClick }) => (
   <Card sx={{ width: 200, margin: 1 }}>
     <CardActionArea onClick={onClick}>
       <CardMedia
