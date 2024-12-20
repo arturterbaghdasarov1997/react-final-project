@@ -47,7 +47,7 @@ export const Home = () => {
   if (isError) return <Box>Error loading photos!</Box>;
 
   return (
-    <Box>
+    <Box sx={{ padding: "50px"}}>
       <Header query={query} setQuery={setQuery} />
 
       {!data?.results.length && (
@@ -71,7 +71,9 @@ export const Home = () => {
 
         <Box mx={2}>
           <Typography variant="body1">
-            <strong>Page {page} of {totalPages}</strong>
+            <strong>
+              Page {page} of {totalPages}
+            </strong>
           </Typography>
         </Box>
 

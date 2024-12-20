@@ -2,7 +2,7 @@ import { TextField, AppBar, Toolbar, Typography } from "@mui/material";
 import { IHeader } from "../interfaces/header.interface";
 
 export const Header: React.FC<IHeader> = ({ query, setQuery }) => (
-  <AppBar position="static">
+  <AppBar position="fixed">
     <Toolbar>
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
         Gallery
