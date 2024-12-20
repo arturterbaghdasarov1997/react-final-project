@@ -3,9 +3,9 @@ export interface IPhotoModal {
   onClose: () => void;
   photo: {
     id: string;
-    urls: { regular: string; full?: string; small?: string }; // Add full and small if the API supports them
+    urls: { regular: string; full?: string; small?: string }
     alt_description: string;
-    user: { name: string; instagram_username: string };
+    user: { name: string; instagram_username: string, twitter_username: string };
     description: string | null;
     likes: number;
     width: string;
