@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useSearch } from "../hooks/useSearch";
 import { Header } from "../components/Header";
 import { PhotoCard } from "../components/PhotoCard";
@@ -14,17 +14,19 @@ export const Home = () => {
   const { data, isLoading, isError } = useSearch(adjustedQuery, page);
 
   const resultsPerPage = 20;
-  const totalPages = data ? Math.min(Math.ceil(data.total / resultsPerPage), 30) : 1;
+  const totalPages = data
+    ? Math.min(Math.ceil(data.total / resultsPerPage), 30)
+    : 1;
 
   const handleNextPage = () => {
     if (page < totalPages) {
-      setPage(prev => prev + 1);
+      setPage((prev) => prev + 1);
     }
   };
 
   const handlePreviousPage = () => {
     if (page > 1) {
-      setPage(prev => prev - 1);
+      setPage((prev) => prev - 1);
     }
   };
 
@@ -36,7 +38,7 @@ export const Home = () => {
   useEffect(() => {
     if (data?.results.length === 0 && page > 1) {
       console.log("No results on current page, going back");
-      setPage(prev => prev - 1);
+      setPage((prev) => prev - 1);
     }
   }, [data, page]);
 
@@ -54,29 +56,25 @@ export const Home = () => {
         </Box>
       )}
 
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(5, 1fr)"
-        gap={2}
-        mt={2}
-      >
+      <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" gap={2} mt={2}>
         {data?.results.map((photo: any) => (
           <Box key={photo.id}>
-            <PhotoCard
-              photo={photo}
-              onClick={() => setSelectedPhoto(photo)}
-            />
+            <PhotoCard photo={photo} onClick={() => setSelectedPhoto(photo)} />
           </Box>
         ))}
       </Box>
 
-      <Box mt={4} display="flex" justifyContent="center">
-        <Button
-          onClick={handlePreviousPage}
-          disabled={page === 1}
-        >
+      <Box mt={4} display="flex" justifyContent="center" alignItems="center">
+        <Button onClick={handlePreviousPage} disabled={page === 1}>
           Previous
         </Button>
+
+        <Box mx={2}>
+          <Typography variant="body1">
+            <strong>Page {page} of {totalPages}</strong>
+          </Typography>
+        </Box>
+
         <Button
           onClick={handleNextPage}
           sx={{ ml: 2 }}
