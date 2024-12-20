@@ -11,6 +11,7 @@ export const Header: React.FC<IHeader> = ({ query, setQuery }) => (
         variant="outlined"
         size="small"
         value={query}
+        placeholder="Search photos..."
         onChange={(e) => setQuery(e.target.value)}
         sx={{ bgcolor: "white", borderRadius: 1 }}
       />
