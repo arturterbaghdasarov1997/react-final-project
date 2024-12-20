@@ -10,9 +10,6 @@ export const useSearch = (query: string, page: number) => {
     return () => clearTimeout(timer);
   }, [query]);
 
-  console.log("Debounced Query: ", debouncedQuery);
-  console.log("Page: ", page);
-
   return useQuery(
     ['photos', debouncedQuery, page],
     () => fetchPhotos(debouncedQuery, page),

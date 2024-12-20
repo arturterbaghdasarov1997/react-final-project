@@ -58,13 +58,19 @@ export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => {
           </Typography>
         )}
 
-        <Typography variant="body2" color="text.secondary" mt={1}>
-          <strong>♡ {photo.likes} likes</strong>
+        <Typography variant="body1" color="text.secondary" mt={1}>
+          <strong>♡ {photo.likes} Likes</strong>
         </Typography>
 
         {photo.user.instagram_username && (
-          <Typography variant="body2" color="text.secondary" mt={1}>
+          <Typography variant="body2" color="text.secondary" fontStyle="italic" mt={1}>
             <strong>Instagram: @{photo.user.instagram_username}</strong>
+          </Typography>
+        )}
+
+        {photo.user.twitter_username && (
+          <Typography variant="body2" color="text.secondary" fontStyle="italic" mt={1}>
+            <strong>X: @{photo.user.twitter_username}</strong>
           </Typography>
         )}
 
