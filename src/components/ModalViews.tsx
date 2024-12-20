@@ -1,52 +1,85 @@
 import { Modal, Box, Typography } from "@mui/material";
 import { IPhotoModal } from "../interfaces/photomodal.interface";
 
-export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => (
-  <Modal open={open} onClose={onClose}>
-    <Box
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        bgcolor: "background.paper",
-        border: "2px solid #000",
-        boxShadow: 24,
-        p: 4,
-        maxWidth: 600,
-        width: "100%",
-        maxHeight: "80vh",
-        overflowY: "auto",
-      }}
-    >
+export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => {
+  const imageUrl = photo.urls.full || photo.urls.regular || photo.urls.small;
+
+  return (
+    <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          width: "100%",
-          maxHeight: "60vh",
-          overflow: "hidden",
-          marginTop: 2,
-          display: "flex",
-          justifyContent: "center",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          bgcolor: "background.paper",
+          border: "2px solid #000",
+          boxShadow: 24,
+          p: 4,
+          maxWidth: "90%",
+          width: "auto",
+          maxHeight: "80vh",
+          overflowY: "auto",
         }}
       >
-        <img
-          src={photo.urls.regular}
-          alt={photo.alt_description}
-          style={{
-            width: "100%",
-            height: "auto",
-            maxHeight: "60vh",
-            objectFit: "contain",
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: 2,
+            maxWidth: "100%",
+            overflow: "hidden",
           }}
-        />
+        >
+          <img
+            src={imageUrl}
+            alt={photo.alt_description}
+            style={{
+              width: "auto",
+              height: "auto",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+
+        <Typography variant="h5" fontWeight="bold">
+          Author: {photo.user.name}
+        </Typography>
+
+        <Typography variant="body1" mt={2}>
+          {photo.description || "No description available"}
+        </Typography>
+
+        {photo.location && photo.location.name && (
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Location: {photo.location.name}
+          </Typography>
+        )}
+
+        <Typography variant="body2" color="text.secondary" mt={1}>
+          <strong>♡ {photo.likes} likes</strong>
+        </Typography>
+
+        {photo.user.instagram_username && (
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            <strong>Instagram: @{photo.user.instagram_username}</strong>
+          </Typography>
+        )}
+
+        {photo.width && photo.height && (
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Dimensions: {photo.width}x{photo.height} px
+          </Typography>
+        )}
+
+        {photo.created_at && (
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Taken on: {new Date(photo.created_at).toLocaleDateString()}
+          </Typography>
+        )}
       </Box>
-      <Typography variant="h5" fontWeight="bold">Author: {photo.user.name}</Typography>
-      <Typography variant="body1" mt={2}>
-        {photo.description || "No description available"}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" mt={1}>
-        {photo.likes} likes
-      </Typography>
-    </Box>
-  </Modal>
-);
+    </Modal>
+  );
+};
