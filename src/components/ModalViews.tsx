@@ -60,7 +60,10 @@ export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => {
         )}
 
         <Typography variant="body1" color="text.secondary" mt={1}>
-          <strong><FavoriteBorderIcon/> {photo.likes} Likes</strong>
+          <Typography sx={{ display: "flex", alignItems: "center" }}>
+            <FavoriteBorderIcon sx={{ mr: 0.5 }} />
+            <strong>{photo.likes} Likes</strong>
+          </Typography>
         </Typography>
 
         {photo.user.instagram_username && (
