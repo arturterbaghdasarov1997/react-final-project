@@ -1,5 +1,6 @@
 import { Modal, Box, Typography } from "@mui/material";
 import { IPhotoModal } from "../interfaces/photomodal.interface";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => {
   const imageUrl = photo.urls.full || photo.urls.regular || photo.urls.small;
@@ -59,7 +60,7 @@ export const ModalView: React.FC<IPhotoModal> = ({ open, onClose, photo }) => {
         )}
 
         <Typography variant="body1" color="text.secondary" mt={1}>
-          <strong>♡ {photo.likes} Likes</strong>
+          <strong><FavoriteBorderIcon/> {photo.likes} Likes</strong>
         </Typography>
 
         {photo.user.instagram_username && (
